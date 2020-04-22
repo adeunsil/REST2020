@@ -1,0 +1,53 @@
+/* if less than 480px */
+@media screen and (max-width: 480px) {
+	th img {
+		max-width: 3em;
+	}
+
+	th {
+		margin-bottom: 1em;
+		padding-left: 1em;
+		padding-right: 1em;
+		padding-top: 0.2em;
+		font-size: 0.8em;
+	}
+
+	#banner>h1 {
+		font-size: 1.5em;
+	}
+	#nav_bar {
+		font-size: 0.8em;
+	}
+
+	#juggling {
+		display:none;
+	}
+
+	#logo {
+		max-width: 20%;
+	}
+
+	h2 {
+	font-size: 0.9em;
+	}
+
+	#Main > p {
+		font-size: 0.8em;
+	}
+
+	#gallery_container > img {
+	height: 10em;
+	}
+
+	#footer {
+		font-size: 0.6em;
+	}
+
+	h3 {
+		font-size: 0.8em;
+	}
+
+	ul {
+		font-size: 0.8em;
+	}
+}

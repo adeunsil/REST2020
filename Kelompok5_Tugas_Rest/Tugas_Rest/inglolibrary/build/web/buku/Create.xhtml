@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateBukuTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateBukuLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{bukuController.selected.id}" title="#{bundle.CreateBukuTitle_id}" required="true" requiredMessage="#{bundle.CreateBukuRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateBukuLabel_judul}" for="judul" />
+                    <h:inputText id="judul" value="#{bukuController.selected.judul}" title="#{bundle.CreateBukuTitle_judul}" required="true" requiredMessage="#{bundle.CreateBukuRequiredMessage_judul}"/>
+                    <h:outputLabel value="#{bundle.CreateBukuLabel_thTerbit}" for="thTerbit" />
+                    <h:inputText id="thTerbit" value="#{bukuController.selected.thTerbit}" title="#{bundle.CreateBukuTitle_thTerbit}" required="true" requiredMessage="#{bundle.CreateBukuRequiredMessage_thTerbit}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateBukuLabel_idJenisBuku}" for="idJenisBuku" />
+                    <h:selectOneMenu id="idJenisBuku" value="#{bukuController.selected.idJenisBuku}" title="#{bundle.CreateBukuTitle_idJenisBuku}" required="true" requiredMessage="#{bundle.CreateBukuRequiredMessage_idJenisBuku}">
+                        <f:selectItems value="#{jenisBukuController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateBukuLabel_idPenulis}" for="idPenulis" />
+                    <h:selectOneMenu id="idPenulis" value="#{bukuController.selected.idPenulis}" title="#{bundle.CreateBukuTitle_idPenulis}" required="true" requiredMessage="#{bundle.CreateBukuRequiredMessage_idPenulis}">
+                        <f:selectItems value="#{penulisController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{bukuController.create}" value="#{bundle.CreateBukuSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{bukuController.prepareList}" value="#{bundle.CreateBukuShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateBukuIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

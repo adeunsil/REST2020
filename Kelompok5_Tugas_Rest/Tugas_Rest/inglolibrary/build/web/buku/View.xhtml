@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewBukuTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewBukuLabel_id}"/>
+                    <h:outputText value="#{bukuController.selected.id}" title="#{bundle.ViewBukuTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewBukuLabel_judul}"/>
+                    <h:outputText value="#{bukuController.selected.judul}" title="#{bundle.ViewBukuTitle_judul}"/>
+                    <h:outputText value="#{bundle.ViewBukuLabel_thTerbit}"/>
+                    <h:outputText value="#{bukuController.selected.thTerbit}" title="#{bundle.ViewBukuTitle_thTerbit}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewBukuLabel_idJenisBuku}"/>
+                    <h:outputText value="#{bukuController.selected.idJenisBuku}" title="#{bundle.ViewBukuTitle_idJenisBuku}"/>
+                    <h:outputText value="#{bundle.ViewBukuLabel_idPenulis}"/>
+                    <h:outputText value="#{bukuController.selected.idPenulis}" title="#{bundle.ViewBukuTitle_idPenulis}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{bukuController.destroyAndView}" value="#{bundle.ViewBukuDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewBukuEditLink}"/>
+                <br />
+                <h:commandLink action="#{bukuController.prepareCreate}" value="#{bundle.ViewBukuCreateLink}" />
+                <br />
+                <h:commandLink action="#{bukuController.prepareList}" value="#{bundle.ViewBukuShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewBukuIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

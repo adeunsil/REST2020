@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPenulisTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListPenulisEmpty}" rendered="#{penulisController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{penulisController.items.rowCount > 0}">
+                    <h:outputText value="#{penulisController.pagination.pageFirstItem + 1}..#{penulisController.pagination.pageLastItem + 1}/#{penulisController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{penulisController.previous}" value="#{bundle.Previous} #{penulisController.pagination.pageSize}" rendered="#{penulisController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{penulisController.next}" value="#{bundle.Next} #{penulisController.pagination.pageSize}" rendered="#{penulisController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{penulisController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPenulisTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPenulisTitle_namaPenulis}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.namaPenulis}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPenulisTitle_alamat}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.alamat}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{penulisController.prepareView}" value="#{bundle.ListPenulisViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{penulisController.prepareEdit}" value="#{bundle.ListPenulisEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{penulisController.destroy}" value="#{bundle.ListPenulisDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{penulisController.prepareCreate}" value="#{bundle.ListPenulisCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListPenulisIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
